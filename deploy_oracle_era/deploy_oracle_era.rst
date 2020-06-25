@@ -4,7 +4,8 @@
 Deploying Oracle with Era
 -------------------------
 
-Oracleは四半期毎にPSUというパッチに相当するものをリリースします。**このラボではOracleとOracle 19cデータベース用のGridソフトウェア両方の展開とパッチの適応をEraを用いて行います。**
+Oracleは四半期毎にPSUというパッチに相当するものをリリースします。
+**このラボではOracleとOracle 19cデータベース用のGridソフトウェア両方の展開とパッチの適応をEraを用いて行います。**
 
 Era を使ったOracle Serverの作成
 +++++++++++++++++++++++++++++
@@ -39,7 +40,7 @@ Era を使ったOracle Serverの作成
 
    .. figure:: images/4.png
 
-#.**Next** をクリックして、Database設定のために以下の項目を埋めてください
+#. **Next** をクリックして、Database設定のために以下の項目を埋めてください
 
    -  **Database Name** - *Initials*\ _proddb
    -  **SID** - *Initials*\ prod
