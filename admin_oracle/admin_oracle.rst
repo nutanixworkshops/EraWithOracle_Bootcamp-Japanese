@@ -4,18 +4,18 @@
 DB Administration with Era
 --------------------------
 
-We will now see how to perform normal database admin task with Era.
+ここでは、Eraを使って通常のデータベース管理タスクを実行する方法を見ていきます。
 
-**In this lab you will Administor your ORACLE DB**
+**このラボでは、あなたのORACLE DBを管理します**
 
-Explore Your Database
+あなたのデータベースを探す
 ++++++++++++++++++++++
 
-#. In **Era**, select **Databases** from the dropdown menu and **Sources** from the lefthand menu.
+#. **Era**のドロップダウンメニュ0から**Databases**を選び、左側のメニューから**Sources**を選択します。
 
    .. figure:: images/1.png
 
-#. Click into your *Initials*\ **-proddb**, this will take you back into the Database Summary page. This page provides details of the Database, Database Server access, Time Machine schedule, Compute/Network/Software profiles used to provision.
+#. *Initials*\ **-proddb**をクリックします、するとDatabase Summary ページに戻ります。このページでは、データベース、データベースサーバーアクセス、タイムマシンスケジュール、プロビジョニングに使用されるコンピュート/ネットワーク/ソフトウェアプロファイルの詳細を提供します。
 
     - **Database Summary:**
 
@@ -33,15 +33,15 @@ Explore Your Database
 
     .. figure:: images/5.png
 
-Snapshot Your Database
+データベースのスナップショット
 ++++++++++++++++++++++
 
-Before we take a manual snapshot of our Database, lets write a new table into our ProdDB.
+データベースのマニュアルスナップショットを取る前に、新しいテーブルをProdDBに書きます。
 
-Write New Table Into Database
+データベースに新しいテーブルを書く
 .............................
 
-#. SSH (Terminal/Putty) into your *Initials*\ -proddb VM
+#. SSH (Terminal/Putty) で *Initials*\ -proddb VM に接続します。
 
    - **User Name** - oracle
    - **Password** - Nutanix/4u
@@ -50,13 +50,13 @@ Write New Table Into Database
 
      ssh oracle@PRODDB IP
 
-#. Launch **sqlplus**
+#. **sqlplus** を起動します。
 
      .. code-block:: Bash
 
        sqlplus / as sysdba
 
-#. Execute the following to create a table:
+#. テーブル作成のために以下を実行します。
 
      .. code-block:: Bash
 
@@ -66,7 +66,8 @@ Write New Table Into Database
        column2 DATE
        );
 
-#. Verify the new table is there by executing the following to list the table:
+#. 以下を実行してテーブル一覧を表示することで、新しいテーブルが存在することを確認します。
+
 
      .. code-block:: Bash
 
@@ -75,22 +76,22 @@ Write New Table Into Database
        from sys.all_tables
        where table_name like 'TEST%';
 
-Take Manual Snapshot of Database
+データベースのマニュアルスナップショットを取る
 ................................
 
-#. In **Era**, select **Databases** from the dropdown menu and **Sources** from the lefthand menu.
+#. **Era** のドロップダウンメニューから **Databases** を選び、左側のメニューから**Sources**を選択します。
 
-#. Click on the Time Machine for your Database *Initials*\ -proddb_TM
+#. データベースのタイムマシン（*Initials*\ -proddb_TM）をクリックする。
 
    .. figure:: images/6.png
 
-#. Click **Actions > Log Catch Up**.
+#. **Actions > Log Catch Up** をクリックします。
 
    .. figure:: images/12.png
 
-#. Click **Yes*
+#.**Yes** をクリックします。
 
-#. Once that is complete, click **Actions > Snapshot**.
+#. 完了後、 **Actions > Snapshot** をクリックします。
 
    .. Figure:: images/7.png
 
@@ -98,22 +99,22 @@ Take Manual Snapshot of Database
 
    .. Figure:: images/8.png
 
-#. Click **Create**
+#.**Create** をクリックします。
 
-#. Select **Operations** from the dropdown menu to monitor the registration. This process should take approximately 2-5 minutes.
+#. ドロップダウンメニューから **Operations** を選択し、保存の進行状況を確認します。この処理は2-5分くらいかかります。
 
-Clone Your Database Server & Database
+データベース及びデータベースサーバのクローン
 +++++++++++++++++++++++++++++++++++++
 
-#. In **Era**, select **Time Machines** from the dropdown menu and select *Initials*\ -proddb_TM
+#. **Era** 上で **Time Machines** をドロップダウンメニューから選択し、*Initials*\ -proddb_TM を選びます。
 
-#. Click **Actions > Clone Database**.
+#. **Actions > Clone Database**をクリックします。
 
    - **Snapshot** - *Initials*\ -proddb-1st-Snapshot (Date Time)
 
    .. figure:: images/9.png
 
-#. Click **Next**
+#. **Next**をクリック
 
    - **Database Server** - Create New Server
    - **Database Server Name** - *Initials*\ _oracle_prod_Clone1
@@ -127,7 +128,7 @@ Clone Your Database Server & Database
 
    .. figure:: images/10.png
 
-#. Click **Next**
+#. **Next** をクリックします。
 
    - **Clone Name** - *Initials*\ _proddb_Clone1
    -  **SID** - *Initials*\ prod
@@ -136,19 +137,19 @@ Clone Your Database Server & Database
 
    .. figure:: images/11.png
 
-#. Click **Clone**
+#. **Clone**をクリックします。
 
-#. Select **Operations** from the dropdown menu to monitor the registration. This process should take approximately 30-50 minutes.
+#. ドロップダウンメニューから **Operations** を選択し、保存の進行状況を確認します。この処理は30-50分くらいかかります。
 
-Delete Table and Clone Refresh
+テーブルの削除とクローンの更新
 ++++++++++++++++++++++++++++++
 
-There are times when a table or other data gets deleted (by accident), and you would like to get it back. here we will delete a table and use the Era Clone Refresh action from the last snapshot we took.
+テーブルやその他のデータが不慮に消えてしまったなら、それをもとに戻したいはずです。ここでは、テーブルを削除して最後のスナップショットのEra Clone Refreshアクションからデータを復旧します。
 
-Delete Table
+テーブルの削除
 ............
 
-#. SSH (Terminal/Putty) into your *Initials*\ -proddb_Clone1 VM
+#. SSH (Terminal/Putty) で *Initials*\ -proddb VM に接続します。
 
    - **User Name** - oracle
    - **Password** - Nutanix/4u
@@ -157,19 +158,19 @@ Delete Table
 
      ssh oracle@PRODDB_Clone1 IP
 
-#. Launch **sqlplus**
+#. **sqlplus** を起動します。
 
      .. code-block:: Bash
 
        sqlplus / as sysdba
 
-#. Execute the following to Drop the table:
+#. 以下に従ってテーブルをドロップします。
 
      .. code-block:: Bash
 
        DROP TABLE testlabtable;
 
-#. Verify the table is gone by executing the following to list the table:
+#. テーブルの一覧を表示し、テーブルがなくなっていることを確認する。
 
      .. code-block:: Bash
 
@@ -178,23 +179,23 @@ Delete Table
        from sys.all_tables
        where table_name like 'TEST%';
 
-Clone Refresh
+クローンの更新
 .............
 
-#. In **Era**, select **Databases** from the dropdown menu and **Clones** from the lefthand menu.
+#. **Era** 上でドロップダウンメニューから **Databases** を選択し、左側のメニューから **Clones** を選択します。
 
-#. Select the Clone for your Database *Initials*\ _proddb and Click **Refresh**.
+#. データベースの*Initials*\ _proddbを選択して、**Clones**をクリックします。
 
    - **Snapshot** - *Initials*\ _proddb-1st-Snapshot (Date Time)
 
-#. Click **Refresh**
+#.**Refresh** をクリックします。
 
-#. Select **Operations** from the dropdown menu to monitor the registration. This process should take approximately 2-5 minutes.
+#. ドロップダウンメニューから **Operations** を選択し、保存の進行状況を確認します。この処理は2-5分くらいかかります。
 
-Verify Table is Back
+テーブルが復元出来たことを確認する
 ....................
 
-#. SSH (Terminal/Putty) into your *Initials*\ -proddb_Clone1 VM
+#. SSH (Terminal/Putty) で *Initials*\ -proddb VM に接続します。
 
    - **User Name** - oracle
    - **Password** - Nutanix/4u
@@ -203,13 +204,13 @@ Verify Table is Back
 
      ssh oracle@PRODDB_Clone1 IP
 
-#. Launch **sqlplus**
+#. **sqlplus** を起動します。
 
      .. code-block:: Bash
 
        sqlplus / as sysdba
 
-#. Verify the table is back by executing the following to list the table:
+#. テーブルの一覧を表示し、テーブルが復元されていることを確認します。
 
      .. code-block:: Bash
 
