@@ -11,11 +11,11 @@ DB Administration with Era
 あなたのデータベースを探す
 ++++++++++++++++++++++
 
-#. **Era**のドロップダウンメニュ0から**Databases**を選び、左側のメニューから**Sources**を選択します。
+#. **Era** のドロップダウンメニューから **Databases** を選び、左側のメニューから **Sources** を選択します。
 
    .. figure:: images/1.png
 
-#. *Initials*\ **-proddb**をクリックします、するとDatabase Summary ページに戻ります。このページでは、データベース、データベースサーバーアクセス、タイムマシンスケジュール、プロビジョニングに使用されるコンピュート/ネットワーク/ソフトウェアプロファイルの詳細を提供します。
+#. *Initials*\ **-proddb** をクリックします、するとDatabase Summary ページに戻ります。このページでは、データベース、データベースサーバーアクセス、タイムマシンスケジュール、プロビジョニングに使用されるコンピュート/ネットワーク/ソフトウェアプロファイルの詳細を提供します。
 
     - **Database Summary:**
 
@@ -89,7 +89,7 @@ DB Administration with Era
 
    .. figure:: images/12.png
 
-#.**Yes** をクリックします。
+#. **Yes** をクリックします。
 
 #. 完了後、 **Actions > Snapshot** をクリックします。
 
@@ -99,7 +99,7 @@ DB Administration with Era
 
    .. Figure:: images/8.png
 
-#.**Create** をクリックします。
+#. **Create** をクリックします。
 
 #. ドロップダウンメニューから **Operations** を選択し、保存の進行状況を確認します。この処理は2-5分くらいかかります。
 
@@ -108,13 +108,13 @@ DB Administration with Era
 
 #. **Era** 上で **Time Machines** をドロップダウンメニューから選択し、*Initials*\ -proddb_TM を選びます。
 
-#. **Actions > Clone Database**をクリックします。
+#. **Actions > Clone Database** をクリックします。
 
    - **Snapshot** - *Initials*\ -proddb-1st-Snapshot (Date Time)
 
    .. figure:: images/9.png
 
-#. **Next**をクリック
+#. **Next** をクリック
 
    - **Database Server** - Create New Server
    - **Database Server Name** - *Initials*\ _oracle_prod_Clone1
@@ -137,7 +137,7 @@ DB Administration with Era
 
    .. figure:: images/11.png
 
-#. **Clone**をクリックします。
+#. **Clone** をクリックします。
 
 #. ドロップダウンメニューから **Operations** を選択し、保存の進行状況を確認します。この処理は30-50分くらいかかります。
 
@@ -188,7 +188,7 @@ DB Administration with Era
 
    - **Snapshot** - *Initials*\ _proddb-1st-Snapshot (Date Time)
 
-#.**Refresh** をクリックします。
+#. **Refresh** をクリックします。
 
 #. ドロップダウンメニューから **Operations** を選択し、保存の進行状況を確認します。この処理は2-5分くらいかかります。
 
