@@ -10,7 +10,7 @@ Deploying Oracle
 
 一方、Nutanixクラスタ及びEraを用いれば、データベースの供給と保護をこのイントロを読むより早く行えるはずです。
 
-** このラボでは、OracleVMの展開をOracle 19c Source VMを素にしたクローンから行います。このVMはマスターイメージとして振る舞い、Eraを使った追加のOracleVMの展開のためのプロファイルを作成します。 **
+このラボでは、OracleVMの展開をOracle 19c Source VMを素にしたクローンから行います。このVMはマスターイメージとして振る舞い、Eraを使った追加のOracleVMの展開のためのプロファイルを作成します。
 
 Clone Source Oracle VM
 ++++++++++++++++++++++
@@ -53,7 +53,7 @@ EraはAHVやESXiに導入できる仮想アプライアンスとして提供さ�
 
   Eraアプライアンスのインストール方法については `こちら <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Era-User- Guide-v12:era-era-installing-on-ahv-t.html>`_.
 
-#. **EraServer-\ **VM に割り当てられたIPアドレスを、**Prism Central > VMs > List** の **IP Addresses** の列から確認します。
+#. **EraServer-\ **VM に割り当てられたIPアドレスを **Prism Central > VMs > List** の **IP Addresses** の列から確認します。
 
 #. \https://*ERA-VM-IP:8443*/ を新しいタブで開きます。
 
@@ -64,13 +64,13 @@ EraはAHVやESXiに導入できる仮想アプライアンスとして提供さ�
 
 #. **Dashboard** のドロップダウンメニューから **Administration** を選択します。
 
-#.Eraが指定したクラスタに設定されていることを、**Cluster Details** から確認してください。
+#. Eraが指定したクラスタに設定されていることを、**Cluster Details** から確認してください。
 
    .. figure:: images/6.png
 
 #. **Era Resources** を左側のメニューから選択してください。
 
-#. 設定したネットワークを確認します。 もし **VLANs Available for Network Profiles** でネットワークが見つからないなら、 **Add** をクリックします。 **Secondary** VLANを選んで、**Add** をクリックします。
+#. 設定したネットワークを確認します。 もし **VLANs Available for Network Profiles** でネットワークが見つからない場合、 **Add** をクリックします。 **Secondary** VLANを選んで、**Add** をクリックします。
 
    .. note::
 
@@ -84,7 +84,7 @@ EraはAHVやESXiに導入できる仮想アプライアンスとして提供さ�
 
    Eraには5つのSLAが組み込まれています(Gold, Silver, Bronze, Zero, and Brass)。SLAはデータベースサーバのバックアップ方法を制御し、継続的な保護や日毎、週毎、月毎、四半期毎の保護間隔を組み合わせることが出来ます。
 
-#. ドロップダウンメニューから**Profiles** を選択します。
+#. ドロップダウンメニューから **Profiles** を選択します。
 
    プロファイルはリソースや設定を予め定義して環境の供給を一貫してシンプルにし、設定が煩雑になることを抑制します。例えば、Compute ProfilesはデータベースサーバのサイズをvCPUsやそのコア、メモリなどの詳細を考慮して決定できます。
 
@@ -123,17 +123,15 @@ Eraを用いたOracle serverの登録
 
       Era Drive User はノンパスでsudoアクセス可能な任意のユーザーです、Eraはスナップショットの取得など様々な操作のためにこの資格情報を使用します。
 
-      Era Drive User はノンパスでsudoアクセス可能な任意のユーザーです、Eraはスナップショットの取得など様々な操作のためにこの資格情報を使用します。
-
       Grid Infrastructure HomeはOracle Infrastructureソフトウェアがインストールされたディレクトリで、Oracle RACかSHIMAデータベースにのみ適用されます。
 
    .. figure:: images/2.png
 
 #. **Register** をクリックします。
 
-#.ドロップダウンメニューから **Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。 次に進む前にこの登録操作が完了するのを待ちます
+#. ドロップダウンメニューから **Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。 次に進む前にこの登録操作が完了するのを待ちます
 
-    *Initials*\ **_oracle_base**の登録が完了したら、追加のOracleVMの展開のためにソフトウェプロファイルを作成する必要があります。
+    *Initials*\ **_oracle_base** の登録が完了したら、追加のOracleVMの展開のためにソフトウェプロファイルを作成する必要があります。
 
 ドロップダウンメニューから **Profiles** を選択します。し、左側のメニューから **Software** を選択します。
 
@@ -149,7 +147,7 @@ Eraを用いたOracle serverの登録
 
 #. **Create** をクリックします。
 
-#.ドロップダウンメニューから **Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。
+#. ドロップダウンメニューから **Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。
 
 データベースの登録
 ++++++++++++++++++++++
@@ -186,4 +184,4 @@ Eraを用いたOracle serverの登録
 
 **Register** をクリックします。
 
-#.ドロップダウンメニューから**Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。
+#. ドロップダウンメニューから**Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。
