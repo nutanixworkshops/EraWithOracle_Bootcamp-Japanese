@@ -16,7 +16,7 @@ Overview
 Era REST API Explorerの使用
 +++++++++++++++++++++++++++++++
 
-Eraは ”APIファースト” アーキテクチャを採用しており、外部ツールによる自動化や組織化を可能にするための完全にドキュメント化されたREST APIを提供します。Prismと同様に、EraはAPI機能を選定したり試験するのを容易にするためのRest API Explorerを提供します。
+Eraは **”APIファースト”** アーキテクチャを採用しており、外部ツールによる自動化や組織化を可能にするための完全にドキュメント化されたREST APIを提供します。Prismと同様に、EraはAPI機能を選定したり試験するのを容易にするためのRest API Explorerを提供します。
 
 #. メニューバーから、上部右側の **Admin > REST API Explorer** を選択します。
 
