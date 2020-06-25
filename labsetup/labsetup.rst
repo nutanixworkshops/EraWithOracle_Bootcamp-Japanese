@@ -72,7 +72,7 @@ Windows Tools VMの展開
 
 このラボでのエクササイズのいくつかはWindows Tools VMに依存します。以下の手順に従ってディスクイメージから個人のVMを展開してください。
 
-#. **Prism Central**内で:fa:`bars` **> Virtual Infrastructure > VMs** を選択します。
+#. **Prism Central **内で:fa:`bars` ** > Virtual Infrastructure > VMs** を選択します。
 
 #. **+ Create VM** をクリックします。
 
