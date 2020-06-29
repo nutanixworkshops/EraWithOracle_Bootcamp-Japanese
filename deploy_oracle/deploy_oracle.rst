@@ -53,7 +53,7 @@ EraはAHVやESXiに導入できる仮想アプライアンスとして提供さ�
 
   Eraアプライアンスのインストール方法については `こちら <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Era-User- Guide-v12:era-era-installing-on-ahv-t.html>`_.
 
-#. **EraServer-\ **VM に割り当てられたIPアドレスを **Prism Central > VMs > List** の **IP Addresses** の列から確認します。
+#. **EraServer-\ **VM に割り当てられたIPアドレス** を **Prism Central > VMs > List** の **IP Addresses** の列から確認します。
 
 #. \https://*ERA-VM-IP:8443*/ を新しいタブで開きます。
 
@@ -74,7 +74,7 @@ EraはAHVやESXiに導入できる仮想アプライアンスとして提供さ�
 
    .. note::
 
-   クラスタのIPAMを利用してアドレスを管理するため、** IPアドレスプールの管理** をオフのままにします。
+   クラスタのIPAMを利用してアドレスを管理するため、**IPアドレスプールの管理** をオフのままにします。
 
    .. figure:: images/era_networks_001.png
 
@@ -184,4 +184,4 @@ Eraを用いたOracle serverの登録
 
 **Register** をクリックします。
 
-#. ドロップダウンメニューから**Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。
+#. ドロップダウンメニューから **Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。
