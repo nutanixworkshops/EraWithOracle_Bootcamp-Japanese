@@ -53,7 +53,7 @@ EraはAHVやESXiに導入できる仮想アプライアンスとして提供さ�
 
   Eraアプライアンスのインストール方法については `こちら <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Era-User- Guide-v12:era-era-installing-on-ahv-t.html>`_.
 
-#. **EraServer-\ **VM に割り当てられたIPアドレス** を **Prism Central > VMs > List** の **IP Addresses** の列から確認します。
+#. **EraServer-\ VMに割り当てられたIPアドレス** を **Prism Central > VMs > List** の **IP Addresses** の列から確認します。
 
 #. \https://*ERA-VM-IP:8443*/ を新しいタブで開きます。
 
