@@ -79,7 +79,7 @@ DB Administration with Era
 データベースのマニュアルスナップショットを取る
 ................................
 
-#. **Era** のドロップダウンメニューから **Databases** を選び、左側のメニューから**Sources**を選択します。
+#. **Era** のドロップダウンメニューから **Databases** を選び、左側のメニューから **Sources** を選択します。
 
 #. データベースのタイムマシン（*Initials*\ -proddb_TM）をクリックする。
 
@@ -184,7 +184,7 @@ DB Administration with Era
 
 #. **Era** 上でドロップダウンメニューから **Databases** を選択し、左側のメニューから **Clones** を選択します。
 
-#. データベースの*Initials*\ _proddbを選択して、**Clones**をクリックします。
+#. データベースの*Initials*\ _proddbを選択して、**Clones** をクリックします。
 
    - **Snapshot** - *Initials*\ _proddb-1st-Snapshot (Date Time)
 
@@ -219,5 +219,5 @@ DB Administration with Era
        from sys.all_tables
        where table_name like 'TEST%';
 
-Takeaways
-+++++++++
+
+確認し、本パートは以上です。
