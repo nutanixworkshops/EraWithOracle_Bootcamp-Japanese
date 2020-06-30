@@ -4,18 +4,19 @@
 Deploying Oracle with Era
 -------------------------
 
-Each quarter, Oracle releases a grouping of patches referred to as a PSU. **In this lab you will walk through the deployment and patching of both Oracle and Grid software for an Oracle 19c database using Era.**
+Oracleは四半期毎にPSUというパッチに相当するものをリリースします。
+**このラボではOracleとOracle 19cデータベース用のGridソフトウェア両方の展開とパッチの適応をEraを用いて行います。**
 
-Create Oracle Server with Era
+Era を使ったOracle Serverの作成
 +++++++++++++++++++++++++++++
 
-In this exercise you will deploy a fresh Oracle database using your *Initials*\ **_ORACLE_19C** 1.0 Software Profile.
+このエクササイズでは各々の *Initials*\ **_ORACLE_19C** 1.0 Software Profileを使った最新のOracleデータベースを展開します。
 
-#. Select **Databases** from the dropdown menu and **Sources** from the lefthand menu.
+#. ドロップダウンメニューから **Databases** を選び、左側のメニューから **Sources** を選択する
 
-#. Click **+ Provision > Single Node Database**.
+#. **+ Provision > Single Node Database** をクリックします。
 
-#. In the **Provision a Database** wizard, fill out the following fields to configure the Database Server:
+#. **Provision a Database** ウィザードから、Detabase Server設定の以下の項目を埋めてください
 
    - **Engine** - Oracle
    - **Database Server** - Create New Server
@@ -35,11 +36,11 @@ In this exercise you will deploy a fresh Oracle database using your *Initials*\ 
 
    .. note::
 
-         By selecting Enable High Availability, Oracle Grid is configured as part of the deployment and Oracle Automatic Storage Management (ASM) is used for volume management. Without High Availability enabled, Linux LVM and file systems would be used for database storage. Grid and ASM are required for clustered Oracle RAC deployments.
+   High Availability(高可用性)を有効にすると、Oracle Gridが展開の一部として設定され、Oracle Autmatic Storage Management(ASM)がボリュームマネジメントのために使われます。高可用性が無効ならば、Linux LVMとファイルシステムがデータベースストレージに使われます。GridとASMにはクラスタ化されたOracle RACの展開が要求されます。
 
    .. figure:: images/4.png
 
-#. Click **Next**, and fill out the following fields to configure the Database:
+#. **Next** をクリックして、Database設定のために以下の項目を埋めてください
 
    -  **Database Name** - *Initials*\ _proddb
    -  **SID** - *Initials*\ prod
@@ -49,17 +50,16 @@ In this exercise you will deploy a fresh Oracle database using your *Initials*\ 
    .. figure:: images/5.png
 
    .. note::
-
-      For each database engine supported by Era, you have the opportunity to run scripts before and after database creation. Common use cases include:
+   Eraがサポートする各データベースエンジンについては、データベース作成の前後にスクリプトを実行する機会があります。一般的な用例は以下のものです:
 
       - Data masking scripts
       - Register the database with DB monitoring solution
       - Scripts to update DNS/IPAM
       - Scripts to automate application setup, such as app-level cloning for Oracle PeopleSoft
 
-      **Encryption** can be used in situations where compliance requires encryption and stops would-be attackers from bypassing the database and reading sensitive information directly from storage by enforcing data-at-rest encryption in the database layer.
+      **Encryption** は、コンプライアンスで求められる、脅威からのデータベースを介した攻撃やストレージの直接的な情報の盗聴を、データベースレイアでの保存データの暗号化によって阻止します。
 
-#. Click **Next** and fill out the following fields to configure the Time Machine for your database:
+#. **Next** をクリックしてデータベース用のTime Machineの設定のために以下の項目を埋めてください
 
    - **Name** - *Initials*\ _proddb_TM (Default)
    - **Description** - (Optional)
@@ -68,8 +68,8 @@ In this exercise you will deploy a fresh Oracle database using your *Initials*\ 
 
    .. figure:: images/6.png
 
-#. Click **Provision** to begin creating your new database server VM and *Initials*\ **_proddb** database.
+#. **Next** をクリックしてデータベース用のTime Machineの設定のために以下の項目を埋めてください
 
-#. Select **Operations** from the dropdown menu to monitor the provisioning. This process should take approximately 60 minutes (depending on your cluster configuration).
+#. ドロップダウンメニューから **Operarions** を選択し、進行状況を確認します。 この工程には60分ほど要します(クラスタの設定にもよります)
 
-#. Please proceed to the following exercises while the database is being provisioned.
+#. デプロイの完了を待たず、次のエクササイズに進んでください。

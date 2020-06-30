@@ -4,49 +4,53 @@
 Oracle Lab Setup
 ----------------------
 
-Welcome to the Databases bootcamp. This bootcamp is meant to provide you with first hand experience in why Nutanix is an ideal platform for Database workloads.
+データベースブートキャンプにようこそ！
+このブートキャンプではなぜNutanixがワークロードに理想的なプラットフォームなのかを体験して頂きます。
 
-Historically, it has been a challenge to virtualize Oracle because of the high cost of traditional virtualization stacks and the impact that a SAN-based architecture can have on performance. Businesses and their IT departments have constantly fought to balance cost, operational simplicity, and consistent predictable performance.
+今までのSANベースのアーキテクチャがもたらすパフォーマンスのようなインパクトや仮想環境の求める高コストに挑戦ことがOracleの仮想化の課題になっていました。
+ビジネス部門やIT部門は運用コストや運用の煩雑さなどのコストパフォーマンスを推考してきました。
 
-The Nutanix Enterprise Cloud removes many of these challenges and makes virtualizing a business-critical application such as Oracle much easier. The Acropolis Distributed Storage Fabric (DSF) is a software-defined solution that provides all the features one typically expects in an enterprise SAN, without a SAN’s physical limitations and bottlenecks. Oracle particularly benefits from the following DSF features:
+Nutanix Enterprise Cloudはこれらの課題を解決し、Oracleのようなビジネルクリティカルな仮想化アプリケーションを容易に実現します。Acropolis Distributed Storage Fabric(DSF)はSANエンタープライズに期待されるような機能を提供するソフトウェアで定義されたソリューションです。特に、OracleはDSFの機能から恩恵を受けています
 
-- Localized I/O and the use of flash for index and key database files to lower operation latency.
-- A highly distributed approach that can handle both random and sequential workloads.
-- The ability to add new nodes and scale the infrastructure without system downtime or performance impact.
-- Nutanix data protection and disaster recovery workflows that simplify backup operations and business continuity processes.
+- ローカライズされたI/Oと、インデックスとキーデータベースファイルのフラッシュの使用により、操作のレイテンシを短縮します。
+- ランダムワークロードとシーケンシャルワークロードの両方を処理できる高度に分散されたアプローチ。
+- システムのダウンタイムやパフォーマンスに影響を与えることなく、新しいノードを追加してインフラストラクチャをスケーリングします。
+- バックアップ操作とビジネス継続性プロセスを簡素化するNutanixデータ保護と災害復旧ワークフロー。
 
-In addition to solving common infrastructure problems for hosting business critical applications, Nutanix also seeks to address many of the key pain points associated with managing databases.
+ビジネスの肝になるアプリケーションのホスティングのための一般的なインフラの課題を解決するために、Nutanixはデータベース管理の多くの致命的な要件に対処しようとしています。
 
 .. figure:: images/4.png
 
-Based on a 2018 IDC study of 500 North American companies with more than 1,000 employees, they estimate:
+従業員数1,000人以上の北米企業500社の2018年IDC調査をもとに試算したところ…:
 
-- 77% of the organizations have more than 200 database instances in their production
-- 82% have more than 10 copies of each DB
-- 45%-60% the total storage capacity is dedicated to accommodating copy data
-- 32% of database clones require daily refreshes for analytics of dev/test
-- Copy data will cost IT organizations $55.63 billion in 2020
+- 組織の77％が本番環境に200を超えるデータベースインスタンスを持っている
+- 82％が各DBのコピーを10個以上持っている
+- 総ストレージ容量の45％〜60％は、コピーデータの格納専用です。
+- データベースクローンの32％は、開発/テストの分析のために毎日の更新が必要です
+- データをコピーすると、IT組織は2020年に556.3億ドルの費用がかかる
 
-Maintaining the status quo leads to inefficient usage of both storage and worse, of administrator time. Meet Nutanix Era.
+現状を鑑みると、このままではストレージとその管理者の両方にとって悪影響であると言えます。つまり、Nutanix Eraが必要なわけです。
 
 .. figure:: images/5.png
 
-Nutanix Era provides DBaaS for your Enterprise Cloud. Leveraging the Nutanix Enterprise Cloud OS, we are able to take advantage of the power of full stack - data, compute, and software. Nutanix Era hides the complexity of database operations and provides common APIs, CLI, and consumer-grade GUI experience for multiple database engines. It makes database operations such as cloning efficient, thereby driving down the TCO of database management for our customers.
+Nutanix Era はエンタープライズ向けのクラウドのDBaaSを提供します。
+Nutanix Enterprise Cloud OSによって、データや処理能力に対して最大限の優位性を得ることができます。
+Nutanix Eraはマルチプルデータベースエンジンによって、一般的なAPIのもたらすデータベース操作の複雑さをカバーし、CLIやコンシューマーグレードのGUIの体験を提供します。
+また、複製などのデータベース操作をより効率的にし、お客様のTOCを軽減させます。
 
 
-
-..  Configuring a Project
+..  プロジェクトの形成
   +++++++++++++++++++++
 
-  In this lab you will leverage multiple pre-built Calm Blueprints to provision your applications...
+    このラボでは前に構築したCalm Blueprintsを利用してアプリケーションの提供を試みます。
 
-  #. In **Prism Central**, select :fa:`bars` **> Services > Calm**.\
+  #. **Prism Central** 内で、:fa:`bars` **> Services > Calm** を選択します。
 
-  #. Select **Projects** from the lefthand menu and click **+ Create Project**.
+  #. 左側のメニューから **Projects** を選択し、**+ Create Project** をクリックます。
 
      .. figure:: images/2.png
 
-  #. Fill out the following fields:
+  #. 以下の項目を埋めてください。
 
      - **Project Name** - *Initials*\ -Project
      - Under **Users, Groups, and Roles**, select **+ User**
@@ -61,18 +65,18 @@ Nutanix Era provides DBaaS for your Enterprise Cloud. Leveraging the Nutanix Ent
 
      .. figure:: images/3.png
 
-  #. Click **Save & Configure Environment**.
+  #. **Save & Configure Environment** をクリックします。
 
-Deploying a Windows Tools VM
+Windows Tools VMの展開
 ++++++++++++++++++++++++++++
 
-Some exercises in this track will depend on leveraging the Windows Tools VM. Follow the below steps to provision your personal VM from a disk image.
+このラボでのエクササイズのいくつかはWindows Tools VMに依存します。以下の手順に従ってディスクイメージから個人のVMを展開してください。
 
-#. In **Prism Central**, select :fa:`bars` **> Virtual Infrastructure > VMs**.
+#. **Prism Central** 内で:fa:`bars` **> Virtual Infrastructure > VMs** を選択します。
 
-#. Click **+ Create VM**.
+#. **+ Create VM** をクリックします。
 
-#. Fill out the following fields to complete the user VM request:
+#. 以下の項目を埋めてください。
 
    - **Name** - *Initials*\ -WinToolsVM
    - **Description** - Manually deployed Tools VM
@@ -90,6 +94,6 @@ Some exercises in this track will depend on leveraging the Windows Tools VM. Fol
       - **VLAN Name** - Secondary
       - Select **Add**
 
-#. Click **Save** to create the VM.
+#. **Save** をクリックしてVMを作成します。
 
-#. Power on your *Initials*\ **-WinToolsVM**.
+#. *Initials*\ **-WinToolsVM** を起動します。

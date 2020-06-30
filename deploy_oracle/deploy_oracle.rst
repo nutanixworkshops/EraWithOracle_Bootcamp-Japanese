@@ -4,28 +4,28 @@
 Deploying Oracle
 -----------------
 
-Traditional database VM deployment resembles the diagram below. The process generally starts with a IT ticket for a database (from Dev, Test, QA, Analytics, etc.). Next one or more teams will need to deploy the storage resources and VM(s) required. Once infrastructure is ready, a DBA needs to provision and configure database software. Once provisioned, any best practices and data protection/backup policies need to be applied. Finally the database can be handed over to the end user. That's a lot of handoffs, and the potential for a lot of friction.
+従来のデータベースVMの展開は下の図のようになっていて、最初はデータベースのITチケット(開発、試験、QA、解析など)から始まります。次にいくつかのチームが必要とするストレージリソースを展開する必要があります。基盤の準備が整ったら、DBA(データベースアドミニストレーター)はデータベースソフトウェアの設定と供給をします。データベースソフトの供給が済んだら、トレーニングやデータ保護/バックアップポリシーの制定を行う必要があります。そしてようやくエンドユーザーにデータベースを引き渡すことができるのです。これには多くのハンドオフ(引き渡し、引き継ぎ)があり、摩擦や情報の欠落を生む可能性があります。
 
 .. figure:: images/0.png
 
-Whereas with a Nutanix cluster and Era, provisioning and protecting a database should take you no longer than it took to read this intro.
+一方、Nutanixクラスタ及びEraを用いれば、データベースの供給と保護をこのイントロを読むより早く行えるはずです。
 
-**In this lab you will deploy a Oracle VM, by cloning a source Oracle 19c Source VM. This VM will act as a master image to create a profile for deploying additional Oracle VMs using Era.**
+このラボでは、OracleVMの展開をOracle 19c Source VMを素にしたクローンから行います。このVMはマスターイメージとして振る舞い、Eraを使った追加のOracleVMの展開のためのプロファイルを作成します。
 
 Clone Source Oracle VM
 ++++++++++++++++++++++
 
-This VM is running Oracle 19c with April PSU patches applied.
+このVMはApril PSUパッチ適応済みのOracle 19cが動作しています。
 
-#. In **Prism Central**, select :fa:`bars` **> Virtual Infrastructure > VMs**.
+#. **Prism Central** で、 :fa:`bars` **> Virtual Infrastructure > VMs** と選択します。
 
    .. figure:: images/1.png
 
-#. Select the checkbox for **Oracle19cSource**, and click **Actions > Clone**.
+#. **Oracle19cSource** のチェックボックスを選択し、**Actions > Clone** とクリックします。
 
    .. figure:: images/1b.png
 
-#. Fill out the following fields:
+#. 以下の項目を埋めてください
 
    - **Number Of Clones** - 1
    - **Name** - *Initials*\ _oracle_base
@@ -34,65 +34,65 @@ This VM is running Oracle 19c with April PSU patches applied.
    - **Number of Cores per vCPU** - 1
    - **Memory** - 8 GiB
 
-#. Click **Save** to create the VM.
+**Save** をクリックし、VMを作成する
 
-   You will now create a copy of this VM which will later be used to install October PSU patches.
+      これでこのVMのコピーが出来て、のちのOctober PSUパッチのインストールに使われます。
 
-#. Once the VM has been created, click **Actions > Clone** again.
+#. VMが作成できたら、もう一度 **Actions > Clone** をクリックします。
 
-#. Change the name to *Initials*\ **_oracle_patched** and click **Save**.
+#. 名前を *Initials*\ **_oracle_patched** と変更し、 **Save** をクリックします。
 
-#. Select both VMs and click **Actions > Power On**.
+#. 両方のVMを選択し、**Actions > Power On** をクリックします。
 
-Exploring Era Resources
+Era Resourcesを見つける
 +++++++++++++++++++++++
 
-Era is distributed as a virtual appliance that can be installed on either AHV or ESXi. For the purposes of conserving memory resources, a shared Era server has already been deployed on your cluster.
+EraはAHVやESXiに導入できる仮想アプライアンスとして提供されており、共有Eraサーバはメモリリソースの節約のために既にあなたのクラスタ上にあります。
 
 .. note::
 
-   If you're interested, instructions for the brief installation of the Era appliance can be found `here <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Era-User-Guide-v12:era-era-installing-on-ahv-t.html>`_.
+  Eraアプライアンスのインストール方法については `こちら <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Era-User- Guide-v12:era-era-installing-on-ahv-t.html>`_.
 
-#. In **Prism Central > VMs > List**, identify the IP address assigned to the **EraServer-\*** VM using the **IP Addresses** column.
+#. **EraServer-\ VMに割り当てられたIPアドレス** を **Prism Central > VMs > List** の **IP Addresses** の列から確認します。
 
-#. Open \https://*ERA-VM-IP:8443*/ in a new browser tab.
+#. \https://*ERA-VM-IP:8443*/ を新しいタブで開きます。
 
-#. Login using the following credentials:
+#. 以下の認証情報に従ってログインします
 
    - **Username** - admin
    - **Password** - nutanix/4u
 
-#. From the **Dashboard** dropdown, select **Administration**.
+#. **Dashboard** のドロップダウンメニューから **Administration** を選択します。
 
-#. Under **Cluster Details**, note that Era has already been configured for your assigned cluster.
+#. Eraが指定したクラスタに設定されていることを、**Cluster Details** から確認してください。
 
    .. figure:: images/6.png
 
-#. Select **Era Resources** from the left-hand menu.
+#. **Era Resources** を左側のメニューから選択してください。
 
-#. Review the configured Networks. If no Networks show under **VLANs Available for Network Profiles**, click **Add**. Select **Secondary** VLAN and click **Add**.
+#. 設定したネットワークを確認します。 もし **VLANs Available for Network Profiles** でネットワークが見つからない場合、 **Add** をクリックします。 **Secondary** VLANを選んで、**Add** をクリックします。
 
    .. note::
 
-      Leave **Manage IP Address Pool** unchecked, as we will be leveraging the cluster's IPAM to manage addresses
+   クラスタのIPAMを利用してアドレスを管理するため、**IPアドレスプールの管理** をオフのままにします。
 
    .. figure:: images/era_networks_001.png
 
-#. From the dropdown menu, select **SLAs**.
+#. ドロップダウンメニューから **SLAs** を選択します。
 
    .. figure:: images/7a.png
 
-   Era has five built-in SLAs (Gold, Silver, Bronze, Zero, and Brass). SLAs control how the database server is backed up. This can be with a combination of Continuous Protection, Daily, Weekly Monthly and Quarterly protection intervals.
+   Eraには5つのSLAが組み込まれています(Gold, Silver, Bronze, Zero, and Brass)。SLAはデータベースサーバのバックアップ方法を制御し、継続的な保護や日毎、週毎、月毎、四半期毎の保護間隔を組み合わせることが出来ます。
 
-#. From the dropdown menu, select **Profiles**.
+#. ドロップダウンメニューから **Profiles** を選択します。
 
-   Profiles pre-define resources and configurations, making it simple to consistently provision environments and reduce configuration sprawl. For example, Compute Profiles specifiy the size of the database server, including details such as vCPUs, cores per vCPU, and memory.
+   プロファイルはリソースや設定を予め定義して環境の供給を一貫してシンプルにし、設定が煩雑になることを抑制します。例えば、Compute ProfilesはデータベースサーバのサイズをvCPUsやそのコア、メモリなどの詳細を考慮して決定できます。
 
-#. If you do not see any networks defined under **Network**, click **+ Create**.
+#. **Network** 内に定義されたネットワークが無い場合、**+ Create** をクリックします。
 
    .. figure:: images/8.png
 
-#. Fill out the following fields and click **Create**:
+#. 以下の項目を埋めて、 **Create** をクリックします。
 
    - **Engine** - ORACLE
    - **Type** - Single Instance
@@ -101,14 +101,14 @@ Era is distributed as a virtual appliance that can be installed on either AHV or
 
    .. figure:: images/9.png
 
-Register Oracle Server with Era
+Eraを用いたOracle serverの登録
 +++++++++++++++++++++++++++++++
 
-In this exercise, you will register your April PSU VM and register it as version 1.0 of your Oracle 19c Software Profile. The Software Profile is a template containing both the operating system and database software, and can be used to deploy additional database servers.
+このエクササイズでは、April PSU VMの登録と、それをあなたのOracle 19c Software Profileのバージョン1.0として登録します。
 
-#. In **Era**, select **Database Servers** from the dropdown menu and **List** from the lefthand menu.
+#. **Era** 内のドロップダウンメニューから **Database Servers** を選択します。し、左側のメニューの **List** を選択します。
 
-#. Click **+ Register** and fill out the following **Database Server** fields:
+#. **+ Register** をクリックし、以下の **Darabase Server** の項目を埋めてください。
 
    - **Engine** - Oracle
    - **IP Address or Name of VM** - *Initials*\ _oracle_base
@@ -121,23 +121,21 @@ In this exercise, you will register your April PSU VM and register it as version
 
    .. note::
 
-      The Era Drive User can be any user on the VM that has sudo access with NOPASSWD setting. Era will use this user's credentials to perform various operations, such as taking snapshots.
+      Era Drive User はノンパスでsudoアクセス可能な任意のユーザーです、Eraはスナップショットの取得など様々な操作のためにこの資格情報を使用します。
 
-      Oracle Database Home is the directory where the Oracle database software is installed, and is a mandatory parameter for registering a database server.
-
-      Grid Infrastructure Home is the directory where the Oracle Grid Infrastructure software is installed. This is only applicable for Oracle RAC or SIHA databases.
+      Grid Infrastructure HomeはOracle Infrastructureソフトウェアがインストールされたディレクトリで、Oracle RACかSHIMAデータベースにのみ適用されます。
 
    .. figure:: images/2.png
 
-#. Click **Register**
+#. **Register** をクリックします。
 
-#. Select **Operations** from the dropdown menu to monitor the registration. This process should take approximately 5 minutes. Wait for the registration operation to successfully complete before moving on.
+#. ドロップダウンメニューから **Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。 次に進む前にこの登録操作が完了するのを待ちます
 
-   Once the *Initials*\ **_oracle_base** server has been registered with Era, we need to create a software profile in order to deploy additional Oracle VMs.
+    *Initials*\ **_oracle_base** の登録が完了したら、追加のOracleVMの展開のためにソフトウェプロファイルを作成する必要があります。
 
-#. Select **Profiles** from the dropdown menu and **Software** from the lefthand menu.
+ドロップダウンメニューから **Profiles** を選択します。し、左側のメニューから **Software** を選択します。
 
-#. Click **+ Create** and fill out the following fields:
+#. **+ Create** をクリックし、以下の項目を埋めます。
 
    - **Engine** - Oracle
    - **Type** - Single Instance
@@ -147,18 +145,18 @@ In this exercise, you will register your April PSU VM and register it as version
 
    .. figure:: images/3.png
 
-#. Click **Create**.
+#. **Create** をクリックします。
 
-#. Select **Operations** from the dropdown menu to monitor the registration. This process should take approximately 5 minutes.
+#. ドロップダウンメニューから **Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。
 
-Register Your Database
+データベースの登録
 ++++++++++++++++++++++
 
-#. In **Era**, select **Databases** from the dropdown menu and **Sources** from the lefthand menu.
+#. **Era** のドロップダウンメニューから **Databases** を選択します。し、左側のメニューの **Sources** を選択します。
 
    .. figure:: images/11.png
 
-#. Click **+ Register** and fill out the following fields:
+#. **+ Register** をクリックし、以下の項目を埋めます。
 
    - **Engine** - ORACLE
    - **Database is on a Server that is:** - Registered
@@ -166,24 +164,24 @@ Register Your Database
 
    .. figure:: images/12.png
 
-#. Click **Next**
+#. **Next** をクリックします。
 
    - **Database Name in Era** - *Initials*\ -orcl
    - **SID** - orcl19c
 
    .. note::
 
-     The Oracle System ID (SID) is used to uniquely identify a particular database on a system. For this reason, one cannot have more than one database with the same SID on a computer system. When using RAC, all instances belonging to the same database must have unique SID's.
+  ID(SID)はシステム上の特定のデータベースを一意に識別するために使われます。そのため、一つのコンピュータシステム上に同じSIDのデータベースは持てません。RACを使う場合、同じデータベースに属する全てが一意のSIDを保つ必要があります。
 
    .. figure:: images/13.png
 
-#. Click **Next**
+**Next** をクリックします。
 
    - **Name** - *Initials*\ -orcl_TM
    - **SLA** - DEFAULT_OOB_BRASS_SLA (no continuous replay)
 
    .. figure:: images/14.png
 
-#. Click **Register**
+**Register** をクリックします。
 
-#. Select **Operations** from the dropdown menu to monitor the registration. This process should take approximately 5 minutes.
+#. ドロップダウンメニューから **Operarions** を選択し、進行状況を確認します。 この処理には5分ほどかかります。

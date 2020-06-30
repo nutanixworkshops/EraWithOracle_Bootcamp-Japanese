@@ -9,36 +9,37 @@ Overview
 
 .. note::
 
-  Estimated time to complete: **15 MINUTES**
+  所要時間15分の想定です。
 
-In this lab you will explore the Era REST API Explorer.
+このラボではEra REST API Explorerを確認します。
 
-Using the Era REST API Explorer
+Era REST API Explorerの使用
 +++++++++++++++++++++++++++++++
 
-Era features an "API first" architecture and provides a fully documented REST API to allow for automation and orchestration of its functions through external tools. Similar to Prism, Era also provides a Rest API Explorer to easily discover and test API functions.
+Eraは **”APIファースト”** アーキテクチャを採用しており、外部ツールによる自動化や組織化を可能にするための完全にドキュメント化されたREST APIを提供します。Prismと同様に、EraはAPI機能を選定したり試験するのを容易にするためのRest API Explorerを提供します。
 
-#. From the menu bar, select **Admin > REST API Explorer** from the top right.
+#. メニューバーから、上部右側の **Admin > REST API Explorer** を選択します。
 
    .. figure:: images/29.png
 
-#. Expand the different categories to view the available operations, including registering Nutanix clusters, registering and provisioning databases, cloning and refreshing databases, updating profiles and SLAs, and getting operation and alert information.
+#. 異なるカテゴリを拡張して使用可能なオペレーションを表示します。
+また、Nutanixクラスタを含むデータベースの登録と供給及び複製と更新、プロファイルとSLAの更新、そしてオペレーションやアラートを取得します。
 
-#. As a simple test, expand **Databases > GET /databases**.
+#. 単純なテストとして、**Databases > GET /databases** を展開します
 
-   This function returns JSON containing details regarding all registered and provisioned databases and requires no additional parameters.
+      この機能は詳細を監視する全ての登録されたあるいは提供されたデータベースろ含むJSONを返し、追加のパラメータを要求することはありません。
 
-#. Click **Try it out > Execute**.
+#. **Try it out > Execute** をクリックします。
 
    .. figure:: images/30.png
 
-   You should receive a JSON response body similar to the image below.
+   以下の画像のようなJSONの応答を受け取る必要があります。
 
    .. figure:: images/32.png
 
-   This API can be used to create powerful workflows using tools like Nutanix Calm, ServiceNow, Ansible, or others. As an example you could provision a Calm blueprint containing the web tier of an application and use a Calm eScript to invoke Era to clone an existing database and return the IP of the newly provisioned database to Calm.
+   このAPIはServiceNow,やAnsibleなど、Nutanix Calmのようなツールを使って強固なワークフローを構築することが出来、例えばデータベース自体を複製するための要求をEraCalm eScriptを用い、アプリケーションのWEBレベルのCalm設計図で提供することができるとか、Calm用に新しく提供されたIPを返したり出来ます。
 
-Takeaways
+まとめ
 +++++++++
 
-- Era provides a REST API to allow for integration with other orchestration and automation tools.
+- Eraは他の仕組みや自動化されたツールとREST APIとの統合を提供する。
