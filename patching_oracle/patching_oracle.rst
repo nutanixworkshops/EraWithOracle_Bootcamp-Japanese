@@ -8,12 +8,12 @@ Patching Oracle with Era
 Eraはバージョン管理されたソフトウェプロファイルを介してデータベースエンジンにパッチを適応させる方法によってそれを容易にします。
 データベースサーバグループはEraのWEBインターフェースやCLI、APIを通じてパッチやロールバック出来ます。
 
-OracleはPSUというパッチ集を四半期毎にリリースします。**このラボではOracleとEraを使ったOracle 19c用のGridソフトウェアの展開とパッチ作業を行います。**
+OracleはPSUというパッチセットを四半期毎にリリースします。**このラボではOracleとEraを使ったOracle 19c用のGridソフトウェアの展開とパッチ作業を行います。**
 
 Base Oracle VMのパッチ作業
 +++++++++++++++++++++++
 
-このエクササイズでは、手動で複製したVMにOctorber PSUパッチを適応し、それを使って新しいバージョンの *Initials*\ **_ORACLE_19C** ソフトウェアプロファイルを作成します。
+このエクササイズでは、手動で複製したVMにOctorber PSUパッチを適用し、それを使って新しいバージョンの *Initials*\ **_ORACLE_19C** ソフトウェアプロファイルを作成します。
 
 #. *Initials*\ **_oracle_patched** VMのIPアドレスを **Prism Central** から確認してください
 
@@ -89,7 +89,7 @@ Eraは **Database Software** や **Grid Software** を含めたOSへのパッケ
 
    .. figure:: images/13.png
 
-#. オプションで、Operating SystemやOracle、Gridソフトウェアに適応されるパッチに関する注意事項を払い出すことができます
+#. オプションで、Operating SystemやOracle、Gridソフトウェアに適用されるパッチに関する注意事項を払い出すことができます
 
    .. figure:: images/14.png
 
@@ -103,9 +103,9 @@ Eraは **Database Software** や **Grid Software** を含めたOSへのパッケ
 
    .. note::
 
-      Eraは予め設定されたメンテナンスウィンドウを選択することで、パッチの適応をスケジュールする機能を提案しています。
-      クラスタ化されたデータベースの展開には、Eraはローリングアップデートをサポートし、
-      アップデートプロセスを通じてデータベースへのアクセス性やを保証しています。
+      Eraは予め設定されたメンテナンスウィンドウを選択することで、パッチの適用をスケジュールする機能を提供しています。
+      クラスタ化されたデータベースへの展開には、Eraはローリングアップデートをサポートし、
+      アップデートプロセスを通じてデータベースへのアクセス性を保証しています。
 
       .. figure:: images/17.png
 
@@ -115,7 +115,7 @@ Eraは **Database Software** や **Grid Software** を含めたOSへのパッケ
 
    .. figure:: images/18.png
 
-#. パッチ処理が完了したら、VMが正常に動作しているかどうかEra外から簡単に確認できます。自分の *Initials*\ **_oracle_prod** VMに以下の承認情報でSSH接続します、
+#. パッチ処理が完了したら、VMが正常に動作しているかどうかEraの外から簡単に確認できます。自分の *Initials*\ **_oracle_prod** VMに以下の承認情報でSSH接続します、
 
    - **User Name** - oracle
    - **Password** - Nutanix/4u
@@ -131,6 +131,6 @@ Eraは **Database Software** や **Grid Software** を含めたOSへのパッケ
 まとめ
 +++++++++
 
-- Software Profilesはバージョン管理され、既存のデータベースサーバへの一律のアップデートの展開のために使用されます。
+- Software Profilesはバージョン管理され、既存のデータベースサーバへの一貫したアップデートの展開のために使用されます。
 - Software Profilesはパッチ処理を簡略化し、必要な手動でのパッチ処理の量を軽減します。
 - アップデートのスケジューリングはウィンドウの切り替えやSLAアップタイムウィンドウに使います。
