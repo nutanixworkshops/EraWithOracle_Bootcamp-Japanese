@@ -5,7 +5,7 @@ Deploying Oracle with Era
 -------------------------
 
 Oracleは四半期毎にPSUというパッチに相当するものをリリースします。
-**このラボではOracleとOracle 19cデータベース用のGridソフトウェア両方の展開とパッチの適応をEraを用いて行います。**
+**このラボではOracleとOracle 19cデータベース用のGridソフトウェア両方の展開とパッチの適用をEraを用いて行います。**
 
 Era を使ったOracle Serverの作成
 +++++++++++++++++++++++++++++
@@ -36,7 +36,9 @@ Era を使ったOracle Serverの作成
 
    .. note::
 
-   High Availability(高可用性)を有効にすると、Oracle Gridが展開の一部として設定され、Oracle Autmatic Storage Management(ASM)がボリュームマネジメントのために使われます。高可用性が無効ならば、Linux LVMとファイルシステムがデータベースストレージに使われます。GridとASMにはクラスタ化されたOracle RACの展開が要求されます。
+   High Availability(高可用性)を有効にすると、Oracle Gridが展開の一部として設定され、Oracle Autmatic Storage Management(ASM)が
+   ボリュームマネジメントのために使われます。高可用性が無効ならば、Linux LVMとファイルシステムがデータベースストレージに使われます。
+   GridとASMにはクラスタ化されたOracle RACの展開が要求されます。
 
    .. figure:: images/4.png
 
@@ -50,14 +52,15 @@ Era を使ったOracle Serverの作成
    .. figure:: images/5.png
 
    .. note::
-   Eraがサポートする各データベースエンジンについては、データベース作成の前後にスクリプトを実行する機会があります。一般的な用例は以下のものです:
+   Eraがサポートする各データベースエンジンについては、データベース作成の前後にスクリプトを実行することができます。一般的な用例は以下のものです:
 
       - Data masking scripts
       - Register the database with DB monitoring solution
       - Scripts to update DNS/IPAM
       - Scripts to automate application setup, such as app-level cloning for Oracle PeopleSoft
 
-      **Encryption** は、コンプライアンスで求められる、脅威からのデータベースを介した攻撃やストレージの直接的な情報の盗聴を、データベースレイアでの保存データの暗号化によって阻止します。
+      **Encryption** は、コンプライアンスとして暗号化が要求される状況で使用でき、データベース層で保存されるデータの暗号化を実施することにより、
+      攻撃者がデータベースをバイパスして機密情報をストレージから直接読み取るのを防ぎます。
 
 #. **Next** をクリックしてデータベース用のTime Machineの設定のために以下の項目を埋めてください
 
