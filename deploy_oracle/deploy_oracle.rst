@@ -49,10 +49,10 @@ Clone Source Oracle VM
 
 #. 両方のVMを選択し、**Actions > Power On** をクリックします。
 
-Era Resourcesを見つける
+Exploring Era Resources
 +++++++++++++++++++++++
 
-EraはAHVやESXiに導入できる仮想アプライアンスとして提供されており、共有Eraサーバはメモリリソースの節約のために既にあなたのクラスタ上にあります。
+EraはAHVやESXiに導入できる仮想アプライアンスとして提供されており、共有Eraサーバはメモリリソース節約のために既にあなたのクラスタ上にあります。
 
 .. note::
 
@@ -108,7 +108,7 @@ EraはAHVやESXiに導入できる仮想アプライアンスとして提供さ�
 
    .. figure:: images/9.png
 
-Eraを用いたOracle serverの登録
+Eraを用いたOracle Serverの登録
 +++++++++++++++++++++++++++++++
 
 このエクササイズでは、April PSU VMの登録と、それをあなたのOracle 19c Software Profileのバージョン1.0として登録します。
