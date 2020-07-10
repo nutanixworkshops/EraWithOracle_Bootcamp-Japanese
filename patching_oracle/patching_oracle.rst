@@ -4,40 +4,42 @@
 Patching Oracle with Era
 ------------------------
 
-Maintaining consistent patch levels across database servers in a traditional environment can be a very difficult process. Era makes this simple by providing a means of database engine patching through versioned software profiles. Groups of database servers can be patched or rolled back through Era using the web interface, or via CLI or API.
+従来の環境ではデータベース間で一律のパッチレベルを維持することは非常に大変な作業でした。
+Eraはバージョン管理されたソフトウェプロファイルを介してデータベースエンジンにパッチを適応させる方法によってそれを容易にします。
+データベースサーバグループはEraのWEBインターフェースやCLI、APIを通じてパッチやロールバック出来ます。
 
-Each quarter, Oracle releases a grouping of patches referred to as a PSU. **In this lab you will walk through the deployment and patching of both Oracle and Grid software for an Oracle 19c database using Era.**
+OracleはPSUというパッチセットを四半期毎にリリースします。**このラボではOracleとEraを使ったOracle 19c用のGridソフトウェアの展開とパッチ作業を行います。**
 
-Patching Base Oracle VM
+Base Oracle VMのパッチ作業
 +++++++++++++++++++++++
 
-In this exercise, you will apply the October PSU patches to your manually cloned VM, register the database server with Era, and then use it as the basis for creating a new version of your *Initials*\ **_ORACLE_19C** Software Profile.
+このエクササイズでは、手動で複製したVMにOctorber PSUパッチを適用し、それを使って新しいバージョンの *Initials*\ **_ORACLE_19C** ソフトウェアプロファイルを作成します。
 
-#. In **Prism Central**, note the IP address of your *Initials*\ **_oracle_patched** VM.
+#. *Initials*\ **_oracle_patched** VMのIPアドレスを **Prism Central** から確認してください
 
-#. Connect to your *Initials*\ **_oracle_patched** VM via SSH using the following credentials:
+#. 以下の資格情報を使って *Initials*\ **_oracle_patched** VMにSSH接続してください。
 
    - **User Name** - root
    - **Password** - Nutanix/4u
 
-#. Execute the following script to download and install the Oracle and Grid October PSU patches:
+#. 以下のスクリプトを実行して、OracleとGrid Octorber PSUパッチをダウンロード＆インストールしてください
 
     .. code-block:: bash
 
       cd Downloads
       ./applypsu.sh
 
-#. Observe that the script will first display the current patch level of the VM, note the April dates on the displayed releases. Press any key to continue the patch installation.
+#. スクリプトが最初に表示するVMの現在のパッチレベルを確認し、リリース日がAprilで有ることを確認してください。
 
    .. figure:: images/7.png
 
-#. If prompted, type **A** to overwrite any existing files while extracting the patch and follow any prompts to press any key to continue. The script should run for approximately 20 minutes.
+もしプロンプトが出たら **A** と入力して既存のファイルを上書きし、プロンプトに従ってパッチの展開を続行してください。 スクリプトの実行時間は20分ほどです。
 
    .. figure:: images/8.png
 
-#. Once the script has finished, return to **Era > Database Servers > List**.
+#. スクリプトの実行が完了したら **Era > Database Servers > List** に戻ります
 
-#. Click **+ Register** and fill out the following **Database Server** fields:
+#. **+ Register** をクリックして **Database Server** の項目を埋めてください
 
    - **Engine** - Oracle
    - **IP Address or Name of VM** - *Initials*\ _oracle_patched
@@ -50,69 +52,75 @@ In this exercise, you will apply the October PSU patches to your manually cloned
 
    .. figure:: images/9.png
 
-#. Click **Register**
+#. **Register** をクリックします。
 
-#. Monitor the progress on the **Operations** page. This process should take approximately 5 minutes.
+#. **Operations** ページで進行状況をモニターしてください。 この処理には5分程かかります。
 
-#. Once registration completes, select **Era > Profiles > Software** and click your *Initials*\ **_ORACLE_19C** Software Profile. Observe that Era provides complete introspection into the packages installed within the operating system, including the **Database Software** and **Grid Software**. Note the **Patches Found** under **Database Software**.
+#. 登録が完了したら、**Era > Profiles > Software** を選択し、自分の*Initials*\ **_ORACLE_19C** Software Profileをクリックします。
+Eraは **Database Software** や **Grid Software** を含めたOSへのパッケージインストールの完璧な自己診断を提供することを観察してください。
+**Database Software** 内の **Patches Found** を確認してください。
 
    .. figure:: images/10.png
 
-#. Click into your *Initials*\ **_ORACLE_19C** Software Profile, and click **+ Create** to create a new version based on the *Initials*\ **_oracle_patched** VM you registered in the previous step.
+#. *Initials*\ **_ORACLE_19C** Software Profileをクリックしてから、**+ Create** をクリックして前のステップで登録した
+*Initials*\ **_oracle_patched** VMを基にした新しいバージョンを作成します
 
    .. figure:: images/10b.png
 
-#. Fill out the following fields and click **Create**:
+#. 以下の項目を埋めてから **Create** をクリックします。
 
    - **Name** - *Initials*\ _ORACLE_19C (Oct19 PSU)
    - Select *Initials*\ **_oracle_patched**
 
    .. figure:: images/11.png
 
-#. Monitor the progress on the **Operations** page. This process should take approximately 5 minutes.
+#. **Operations** ページで進行状況をモニターしてください。 この処理には5分程かかります。
 
-#. Return to **Era > Profiles > Software** and click your *Initials*\ **_ORACLE_19C** Software Profile. Note the 2.0 version now appears, with additional patches found under **Database Software** and **Grid Infrastructure Software**.
+#. **Era > Profiles > Software** に戻って自分の *Initials*\ **_ORACLE_19C** Software Profileをクリックします。
+**Database Software** と **Grid Infrastructure Software** に追加のパッチが見つかり、バージョン2.0と表示されることを確認してください。
 
    .. figure:: images/12.png
+   *Initials*\ **_oracle_prod** VMにパッチ適応済みのSoftware Profileを適応させる前に、Software Profileは直ちに公開されなければなりません、
+   そうでなければEraは利用可能なバージョンや推奨アップデートを表示できません。
 
-   Before you can apply to patched Software Profile to your *Initials*\ **_oracle_prod** VM, the Software Profile must first be published, otherwise Era will not show the version as available or recommended for updating.
+#. **2.0** プロファイルを選択して **Update** をクリックします。
 
-#. Select the **2.0** profile and click **Update**.
-
-#. Under **Status**, select **Published** and click **Next**.
+#. **Status** 内で、**Published** を選択して **Next** をクリックします。
 
    .. figure:: images/13.png
 
-#. Optionally, you can provide notes regarding patches applied to Operating System, Oracle, and Grid software. Click **Next > Update**.
+#. オプションで、Operating SystemやOracle、Gridソフトウェアに適用されるパッチに関する注意事項を払い出すことができます
 
    .. figure:: images/14.png
 
-#. Return to **Era > Database Servers > List** and click your *Initials*\ **_oracle_prod** database server.
+#. **Era > Database Servers > List** に戻って自分の *Initials*\ **_oracle_prod** データベースサーバをクリックします。
 
-#. Under **Profiles**, note that the newer, published software profile is being recommended as an available update to the database server. Click **Update**.
+#. **Profiles** 内で公開された新しいソフトウェアプロファイルがデータベースサーバで利用可能なアップデートとして推奨されていることを確認してください。 **Update** をクリックします。
 
    .. figure:: images/15.png
 
-#. Select the desired patch profile from the drop down menu (in a real environment you could potentially publish several options) and click **Patch 1 Database** to begin the update process.
+#. ドロップダウンメニューから望むパッチプロファイル(実環境ではいくつかのオプションを公開する可能性があります)を選択して **Patch 1 Database** をクリックしてアップデートを開始します。
 
    .. note::
 
-      Era also offers the ability to schedule patching application, allowing you to select a pre-determined maintenance window. For clustered database deployments, Era supports rolling updates, ensuring database accessibility throughout the update process.
+      Eraは予め設定されたメンテナンスウィンドウを選択することで、パッチの適用をスケジュールする機能を提供しています。
+      クラスタ化されたデータベースへの展開には、Eraはローリングアップデートをサポートし、
+      アップデートプロセスを通じてデータベースへのアクセス性を保証しています。
 
       .. figure:: images/17.png
 
-#. Monitor the progress on the **Operations** page. This process should take approximately 25 minutes.
+#. **Operations** ページで処理の進行状況を確認してください。 この処理には25分ほどかかります。
 
-   During the patching process, Era will gracefully bring down database and Grid services, shut down the VM, replace the relevant virtual disks with thin clones from the 2.0 Software Profile, and bring the database server back online.
+   パッチ処理の間、EraはデータベースやGridサービスを適宜停止、VMをシャットダウンさせ、関連する仮想ディスクを2.0 Software Profileからシンクローンでリプレイス、データベースサーバを起動し、オンラインに戻します。
 
    .. figure:: images/18.png
 
-#. Once the patching operation has completed, you can easily validate the VM is running with the patched software outside of Era. SSH into your *Initials*\ **_oracle_prod** VM with the following credentials:
+#. パッチ処理が完了したら、VMが正常に動作しているかどうかEraの外から簡単に確認できます。自分の *Initials*\ **_oracle_prod** VMに以下の承認情報でSSH接続します、
 
    - **User Name** - oracle
    - **Password** - Nutanix/4u
 
-#. Execute the following command to display installed patch versions:
+#. インストールしたパッチのバージョンを表示するために以下のコマンドを実行してください
 
    ::
 
@@ -120,11 +128,9 @@ In this exercise, you will apply the October PSU patches to your manually cloned
 
    .. figure:: images/19.png
 
-Takeaways
+まとめ
 +++++++++
 
-What are the key things we learned in this lab?
-
-- Software Profiles can be versioned and used to deploy consistent updates to existing database servers
-- Software Profiles also simplify the patching process reducing the amount of manual patching needed in an environment
-- Scheduling updates can be used to hit change windows or SLA uptime windows.
+- Software Profilesはバージョン管理され、既存のデータベースサーバへの一貫したアップデートの展開のために使用されます。
+- Software Profilesはパッチ処理を簡略化し、必要な手動でのパッチ処理の量を軽減します。
+- アップデートのスケジューリングはウィンドウの切り替えやSLAアップタイムウィンドウに使います。
