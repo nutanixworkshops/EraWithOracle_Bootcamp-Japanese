@@ -1,7 +1,7 @@
 .. _deploy_oracle_era:
 
 -------------------------
-Deploying Oracle with Era
+EraでOracleのデプロイ
 -------------------------
 
 Oracleは四半期毎にPSUというパッチに相当するものをリリースします。
